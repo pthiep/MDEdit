@@ -1,12 +1,57 @@
-﻿<Window x:Class="MDEdit.MainWindow"
+﻿<Controls:MetroWindow x:Class="MDEdit.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MDEdit"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="678" Width="984.5">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Content="settings" />
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20"
+                   Height="20"
+                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cupcake}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    <TextBlock Margin="4 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="deploy cupcakes" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
     <Grid>
-        
+
+        <Button Name="TestString" Margin="728,10,94,597" Content="Test" Click="TestString_Click"></Button>
+        <toolkit:RichTextBox x:Name="_richTextBox" Margin="10,10,274,10" BorderBrush="Gray" Padding="10"
+                                     Text="{Binding XMDSource}" 
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <toolkit:RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0" />
+                </Style>
+            </toolkit:RichTextBox.Resources>
+            <toolkit:RichTextBox.TextFormatter>
+                <toolkit:PlainTextFormatter />
+            </toolkit:RichTextBox.TextFormatter>
+        </toolkit:RichTextBox>
     </Grid>
-</Window>
+
+</Controls:MetroWindow>
